@@ -1,0 +1,1 @@
+{"name":"lounna-chiktay-store","version":"1.1.0","private":true,"description":"Chiktay shopping basket with Stripe-hosted Checkout","scripts":{"start":"node server.js"},"engines":{"node":">=20"}}

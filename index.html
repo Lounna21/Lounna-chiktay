@@ -47,6 +47,7 @@ if(new URLSearchParams(window.location.search).has('paid')){
  if(params.get('paid')==='success'){cart={};save();renderCart();toast('Payment submitted. Check your email for a Stripe receipt.');}
  if(params.get('paid')==='cancel')toast('Checkout canceled. Your basket is still saved.');
  window.history.replaceState({},'',window.location.pathname);
-}
+}renderProducts();
+renderCart();
 </script>
 </body></html>

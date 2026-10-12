@@ -1,0 +1,5 @@
+Lounna's Chiktay Website
+
+Use the index.html included in this ZIP to replace index.html in your GitHub repository Lounna21/Lounna-chiktay. Product photographs are embedded; no separate image files are required for them.
+
+Keep your existing server.js, package.json, Render environment variables and Stripe secret keys on Render. After committing, deploy the latest GitHub commit in Render and test the basket and Stripe TEST mode before accepting orders.

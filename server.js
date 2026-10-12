@@ -16,7 +16,17 @@ function stripeRequest(pathname,body){return fetch('https://api.stripe.com/v1'+p
 const server=http.createServer(async(req,res)=>{
  const pathOnly=new URL(req.url,'http://localhost').pathname;
  if(req.method==='GET' && (pathOnly==='/'||pathOnly==='/index.html')) {return fs.createReadStream(path.join(__dirname,'index.html')).on('error',()=>json(res,500,{error:'Cannot load store'})).pipe(res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','X-Content-Type-Options':'nosniff'}));}
- if(req.method==='POST' && pathOnly==='/api/checkout'){
+ 
+if (req.method === 'GET' && (
+  pathOnly === '/lounna-chiktay-jars.jpg' ||
+  pathOnly === '/lounna-chiktay-food.jpg'
+)) {
+  res.writeHead(200, {'Content-Type': 'image/jpeg'});
+  return fs.createReadStream(
+    path.join(__dirname, pathOnly.slice(1))
+  ).pipe(res);
+}
+if(req.method==='POST' && pathOnly==='/api/checkout'){
   try {
    if(!process.env.STRIPE_SECRET_KEY || !process.env.PUBLIC_BASE_URL) return json(res,503,{error:'Stripe has not been connected yet. The store owner needs to configure payments.'});
    const base=new URL(process.env.PUBLIC_BASE_URL);if(!['http:','https:'].includes(base.protocol))throw Error('Invalid public URL');
